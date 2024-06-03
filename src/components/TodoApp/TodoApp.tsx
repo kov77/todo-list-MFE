@@ -28,7 +28,7 @@ const InputGroup = styled(Box)({
   gap: "2rem"
 })
 
-const TodoApp: React.FC = () => {
+const TodoApp: React.FC<{ listName: string }> = ({listName}) => {
   const [todos, setTodos] = useLocalStorage<Todo[]>('todos', []);
   const [filter, setFilter] = useState('All');
   const [description, setDescription] = useState('');
@@ -54,7 +54,7 @@ const TodoApp: React.FC = () => {
 
   return (
     <AppContainer>
-      <Typography variant={'h1'} fontSize={50}>Todo List</Typography>
+      <Typography variant={'h1'} fontSize={50}>{listName}</Typography>
       <TodoContainer>
         <InputGroup>
           <OutlinedInput

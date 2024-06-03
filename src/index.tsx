@@ -1,12 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
+import { registerApplication, start } from 'single-spa';
+import { bootstrap, mount, unmount } from './root';
 import App from './App';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+registerApplication({
+  name: 'todo-app',
+  app: { bootstrap, mount, unmount },
+  activeWhen: ['/todo'],
+});
+
+start();
+
+ReactDOM.render(<App />, document.getElementById('root'));

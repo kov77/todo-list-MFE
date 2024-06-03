@@ -1,17 +1,17 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import TodoApp from './TodoApp';
-
+const todoListName = "My Todo"
 test('renders TodoApp with initial UI elements', () => {
-  render(<TodoApp />);
-  expect(screen.getByText('Todo List')).toBeInTheDocument();
+  render(<TodoApp listName={todoListName} />);
+  expect(screen.getByText('My Todo')).toBeInTheDocument();
   expect(screen.getByPlaceholderText('Add task')).toBeInTheDocument();
   expect(screen.getByRole('button', { name: 'Add' })).toBeInTheDocument();
   expect(screen.getByText('All')).toBeInTheDocument();
 });
 
 test('adds a new todo when Add button is clicked', () => {
-  render(<TodoApp />);
+  render(<TodoApp listName={todoListName} />);
   const input = screen.getByPlaceholderText('Add task');
   const addButton = screen.getByRole('button', { name: 'Add' });
 
@@ -22,7 +22,7 @@ test('adds a new todo when Add button is clicked', () => {
 });
 
 test('filters todo items when filter button is clicked', () => {
-  render(<TodoApp />);
+  render(<TodoApp listName={todoListName} />);
   const input = screen.getByPlaceholderText('Add task');
   const addButton = screen.getByRole('button', { name: 'Add' });
 
